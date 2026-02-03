@@ -8,7 +8,7 @@
     "client": "vite",
     "server": "cd server && npm run dev",
     "build": "npm install && cd server && npm install && npx prisma generate && tsc && cd .. && tsc -b && vite build",
-    "start": "node server/dist/index.js",
+    "start": "cd server && npx prisma db push && node dist/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
