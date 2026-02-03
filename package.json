@@ -4,8 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "vite",
+    "server": "cd server && npm run dev",
+    "build": "npm install && cd server && npm install && npx prisma generate && tsc && cd .. && tsc -b && vite build",
+    "start": "node server/dist/index.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -19,6 +22,7 @@
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9.33.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
